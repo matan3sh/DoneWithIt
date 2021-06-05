@@ -1,11 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  Alert,
+  Button,
+  Platform,
+  StatusBar,
+} from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Button
+        color='orange'
+        title='Click Me'
+        onPress={() =>
+          Alert.prompt('My title', 'My Message', (text) => console.log(text))
+        }
+      />
+    </SafeAreaView>
   );
 }
 
@@ -13,7 +26,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 });
