@@ -17,8 +17,6 @@ const WelcomeScreen = () => {
   );
 };
 
-export default WelcomeScreen;
-
 const styles = StyleSheet.create({
   background: {
     flex: 1,
@@ -45,3 +43,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#4ecdc4',
   },
 });
+
+export default WelcomeScreen;
