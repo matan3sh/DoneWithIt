@@ -17,6 +17,8 @@ const ViewImageScreen = () => {
   );
 };
 
+export default ViewImageScreen;
+
 const styles = StyleSheet.create({
   closeIcon: {
     width: 50,
@@ -43,5 +45,3 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
-
-export default ViewImageScreen;
