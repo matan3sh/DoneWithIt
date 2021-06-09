@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Button,
+  FlatList,
   Modal,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -9,10 +10,17 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AppText from './AppText';
+import PickerItem from './PickerItem';
 import Screen from './Screen';
 import defaultStyles from '../config/styles';
 
-const AppPicker = ({ icon, placeholder }) => {
+const AppPicker = ({
+  icon,
+  items,
+  onSelectItem,
+  placeholder,
+  selectedItem,
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -27,7 +35,9 @@ const AppPicker = ({ icon, placeholder }) => {
               style={styles.icon}
             />
           )}
-          <AppText style={styles.text}>{placeholder}</AppText>
+          <AppText style={styles.text}>
+            {selectedItem ? selectedItem.label : placeholder}
+          </AppText>
           <MaterialCommunityIcons
             name='chevron-down'
             size={20}
@@ -38,6 +48,19 @@ const AppPicker = ({ icon, placeholder }) => {
       <Modal visible={modalVisible} animationType='slide'>
         <Screen>
           <Button title='Close' onPress={() => setModalVisible(false)} />
+          <FlatList
+            data={items}
+            keyExtractor={(item) => item.value.toString()}
+            renderItem={({ item }) => (
+              <PickerItem
+                label={item.label}
+                onPress={() => {
+                  setModalVisible(false);
+                  onSelectItem(item);
+                }}
+              />
+            )}
+          />
         </Screen>
       </Modal>
     </>
