@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
 import Screen from './app/components/Screen';
-import AppTextInput from './app/components/AppTextInput';
+import AppPicker from './app/components/AppPicker';
 
 export default function App() {
-  const [firstName, setFirstName] = useState('');
   return (
     <Screen>
-      <AppTextInput placeholder='Username' icon='email' />
+      <AppPicker icon='apps' placeholder='Category' />
     </Screen>
   );
 }
